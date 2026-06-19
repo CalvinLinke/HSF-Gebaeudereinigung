@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+  <rect width="220" height="220" fill="#143C6E"></rect><g transform="translate(0,16)"><g fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter">
+    <polyline points="16,84 32,84 110,30 188,84 204,84"></polyline>
+    <polyline points="159,64 159,46 172,46 172,55"></polyline>
+  </g>
+  <text x="110" y="158" text-anchor="middle" font-family="&#39;Arial Black&#39;,&#39;Archivo Black&#39;,Arial,sans-serif" font-weight="900" font-size="94" letter-spacing="-3" fill="#ffffff">HSF</text></g></svg>
