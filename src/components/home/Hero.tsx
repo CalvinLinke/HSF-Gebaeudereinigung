@@ -79,11 +79,21 @@ export function Hero() {
   const revealToken = useRef(0);
   const countToken = useRef(0);
   const reduced = useRef(false);
+  const firstRun = useRef(true);
 
   const setFinalNumbers = useCallback(() => {
     COUNTERS.forEach((c, i) => {
       const el = counterRefs.current[i];
       if (el) el.textContent = `${c.target}${c.suffix}`;
+    });
+  }, []);
+
+  // Kennzahlen leeren (geschütztes Leerzeichen hält die Höhe) und ein
+  // laufendes Count-up abbrechen — genutzt beim Start des Hell-Reveals.
+  const blankNumbers = useCallback(() => {
+    countToken.current++;
+    counterRefs.current.forEach((el) => {
+      if (el) el.textContent = " ";
     });
   }, []);
 
@@ -144,6 +154,9 @@ export function Hero() {
       return;
     }
     if (!dirt) return;
+    // Kennzahlen ab Druck auf den Switcher leeren; Count-up startet erst,
+    // wenn der Wischer durch ist (t >= 0.96).
+    blankNumbers();
     dirt.style.opacity = "1";
     dirt.style.transform = "skewX(-11deg) translateX(-12%)";
     if (streak) streak.style.opacity = "0.5";
@@ -174,7 +187,7 @@ export function Hero() {
       else dirt.style.opacity = "0";
     };
     requestAnimationFrame(frame);
-  }, [runCountUp, runGloss, setFinalNumbers]);
+  }, [blankNumbers, runCountUp, runGloss, setFinalNumbers]);
 
   // Initialzustände + Load-Count-up (dunkel).
   useIsoEffect(() => {
@@ -203,13 +216,18 @@ export function Hero() {
 
   // Umschalten dunkel <-> hell (Layout-Effekt: Dreck deckt vor dem ersten Paint).
   useIsoEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false;
+      return; // beim Mount nicht erneut auslösen (Load-Count-up läuft schon)
+    }
     if (light) {
       runReveal();
     } else {
       revealToken.current++;
       if (dirtRef.current) dirtRef.current.style.opacity = "0";
+      setFinalNumbers(); // falls ein Reveal mittendrin abgebrochen wurde
     }
-  }, [light, runReveal]);
+  }, [light, runReveal, setFinalNumbers]);
 
   function persistLead() {
     try {
