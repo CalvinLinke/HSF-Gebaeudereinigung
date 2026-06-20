@@ -60,43 +60,90 @@
   }
 }
 
-/* === Hero-Animation „Squeegee-Wisch" (Startseite C) === */
-@keyframes hsf-wipe {
+/* === Hero „Clean-Reveal" (Startseite) === */
+@keyframes aSheen {
   0% {
-    transform: translateX(-70%) skewX(-12deg);
+    background-position: 160% 0;
   }
-  55% {
-    transform: translateX(240%) skewX(-12deg);
+  60% {
+    background-position: -60% 0;
   }
   100% {
-    transform: translateX(240%) skewX(-12deg);
-  } /* kurze Pause am Ende */
+    background-position: -60% 0;
+  } /* hält am Ende */
 }
-@keyframes hsf-pane {
-  0%,
-  44% {
-    opacity: 0.5;
+@keyframes a3grid {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 54px 54px;
+  }
+}
+@keyframes a3spot {
+  0% {
+    transform: translate(0, 0);
   }
   50% {
-    opacity: 1;
-  } /* Raster klart kurz auf, wenn der Abzieher durch ist */
-  60%,
+    transform: translate(-60px, 40px);
+  }
   100% {
-    opacity: 0.5;
+    transform: translate(0, 0);
+  }
+}
+@keyframes aMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
-.hsf-wipe {
-  animation: hsf-wipe 7.5s ease-in-out infinite;
-  will-change: transform;
+.hsf-sheen {
+  background-image: linear-gradient(
+    100deg,
+    #5a8bd4 0%,
+    #5a8bd4 40%,
+    #cfe0f7 47%,
+    #ffffff 50%,
+    #cfe0f7 53%,
+    #5a8bd4 60%,
+    #5a8bd4 100%
+  );
+  background-size: 230% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: aSheen 5s ease-in-out infinite;
 }
-.hsf-pane {
-  animation: hsf-pane 7.5s ease-in-out infinite;
+.hsf-grid {
+  animation: a3grid 16s linear infinite;
+}
+.hsf-spot {
+  animation: a3spot 13s ease-in-out infinite;
+}
+.hsf-marquee {
+  animation: aMarquee 22s linear infinite;
+}
+/* Standard verdeckt — wird per JS (rAF) ein-/ausgeblendet */
+.hsf-dirt {
+  opacity: 0;
+}
+.hsf-gloss {
+  opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hsf-wipe,
-  .hsf-pane {
+  .hsf-sheen,
+  .hsf-grid,
+  .hsf-spot,
+  .hsf-marquee {
     animation: none;
+  }
+  .hsf-dirt,
+  .hsf-gloss {
+    display: none;
   }
 }

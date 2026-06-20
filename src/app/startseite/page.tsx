@@ -1,17 +1,15 @@
 import Link from "next/link";
-import { ArrowRight, Check, ShieldCheck, Users, MapPin } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
 import { DiagonalMark } from "@/components/ui/DiagonalMark";
+import { Hero } from "@/components/home/Hero";
 import { ServiceCard } from "@/components/home/ServiceCard";
-import { QuickAnfrageCard } from "@/components/home/QuickAnfrageCard";
-import HeroBackground from "@/components/home/HeroBackground";
 import { KontaktCta } from "@/components/sections/KontaktCta";
 import { Icon } from "@/lib/icons";
 import {
-  HERO,
   LEISTUNGEN,
   USPS,
   GROSSOBJEKTE,
@@ -51,12 +49,6 @@ const JSON_LD = {
   openingHours: "Mo-Fr 07:00-17:00",
 };
 
-const HERO_CHIPS = [
-  { icon: ShieldCheck, label: "Qualität nach Checkliste" },
-  { icon: Users, label: `${COMPANY.customers} Kunden` },
-  { icon: MapPin, label: "Königsbrücker Landstraße" },
-];
-
 const BAU_CHECKS = [
   "Rückwärtsplanung",
   "Kontrolle pro Etage",
@@ -72,34 +64,8 @@ export default function Startseite() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
 
-      {/* 1 — Hero */}
-      <section className="relative overflow-hidden border-b border-line bg-surface">
-        <HeroBackground />
-        <Container className="relative z-10 grid items-center gap-12 py-[72px] lg:grid-cols-[1.1fr_.9fr] lg:py-[88px]">
-          <div>
-            <Kicker>Familienbetrieb · Dresden · seit 1988</Kicker>
-            <h1 className="mt-5 text-[clamp(34px,5vw,54px)] font-extrabold leading-[1.03] tracking-[-0.03em] text-ink">
-              {HERO.headlineC}
-            </h1>
-            <p className="mt-5 max-w-[54ch] text-[17px] leading-relaxed text-ink-2">
-              {HERO.subline}
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              {HERO_CHIPS.map((chip) => (
-                <span
-                  key={chip.label}
-                  className="inline-flex items-center gap-2 border border-line bg-white px-3.5 py-2 text-[13px] font-medium text-ink-2"
-                >
-                  <chip.icon className="h-4 w-4 text-blue" />
-                  {chip.label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <QuickAnfrageCard />
-        </Container>
-      </section>
+      {/* 1 — Hero (Clean-Reveal, Dark/Light) */}
+      <Hero />
 
       {/* 2 — Leistungen */}
       <Section>
