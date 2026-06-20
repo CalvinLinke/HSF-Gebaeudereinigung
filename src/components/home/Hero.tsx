@@ -65,7 +65,7 @@ const FIELD_LABEL =
   "mb-1.5 block font-mono text-[11px] uppercase tracking-[1.5px] text-[#5A6373]";
 
 export function Hero() {
-  const [light, setLight] = useState(false);
+  const [light, setLight] = useState(true);
   const [objektart, setObjektart] = useState(KONTAKT.objektarten[0]);
   const [flaeche, setFlaeche] = useState("");
   const [turnus, setTurnus] = useState(0);
@@ -79,7 +79,6 @@ export function Hero() {
   const revealToken = useRef(0);
   const countToken = useRef(0);
   const reduced = useRef(false);
-  const firstRun = useRef(true);
 
   const setFinalNumbers = useCallback(() => {
     COUNTERS.forEach((c, i) => {
@@ -154,8 +153,8 @@ export function Hero() {
       return;
     }
     if (!dirt) return;
-    // Kennzahlen ab Druck auf den Switcher leeren; Count-up startet erst,
-    // wenn der Wischer durch ist (t >= 0.96).
+    // Kennzahlen leeren; Count-up startet kurz vor Ende des Wischers
+    // (t >= 0.808, also ~0,7 s früher als das Wischer-Ende).
     blankNumbers();
     dirt.style.opacity = "1";
     dirt.style.transform = "skewX(-11deg) translateX(-12%)";
@@ -179,7 +178,7 @@ export function Hero() {
         glossStarted = true;
         runGloss(token);
       }
-      if (!countStarted && t >= 0.96) {
+      if (!countStarted && t >= 0.808) {
         countStarted = true;
         runCountUp();
       }
@@ -210,17 +209,14 @@ export function Hero() {
       setFinalNumbers();
       return;
     }
-    runCountUp();
+    // Im Hell-Default übernimmt der Reveal (Light-Effekt) das Count-up.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Umschalten dunkel <-> hell (Layout-Effekt: Dreck deckt vor dem ersten Paint).
   useIsoEffect(() => {
-    if (firstRun.current) {
-      firstRun.current = false;
-      return; // beim Mount nicht erneut auslösen (Load-Count-up läuft schon)
-    }
     if (light) {
+      // Hell ist Standard: der Reveal läuft auch beim Laden als Intro.
       runReveal();
     } else {
       revealToken.current++;
