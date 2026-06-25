@@ -1,4 +1,4 @@
-import { Phone, Smartphone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Container } from "@/components/ui/Container";
 import { Kicker } from "@/components/ui/Kicker";
@@ -15,8 +15,7 @@ export const metadata = buildMetadata({
 });
 
 const INFO = [
-  { icon: Phone, label: "Festnetz", value: CONTACT.phone, href: CONTACT.phoneHref },
-  { icon: Smartphone, label: "Mobil", value: CONTACT.mobile, href: CONTACT.mobileHref },
+  { icon: Phone, label: "Telefon", value: CONTACT.phone, href: CONTACT.phoneHref },
   { icon: Mail, label: "E-Mail", value: CONTACT.email, href: CONTACT.emailHref },
   {
     icon: MapPin,

@@ -20,7 +20,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 const DESCRIPTION =
-  "Familienbetrieb für Gebäudereinigung in Dresden, seit 1988 in zweiter Generation. Büros, Praxen, Wohnanlagen, Gewerbe und Bauendreinigung.";
+  "Familienbetrieb für Gebäudereinigung in Dresden, seit 1988 in dritter Generation. Büros, Praxen, Wohnanlagen, Gewerbe und Bauendreinigung.";
 const DEFAULT_TITLE = `${SITE_NAME} · Dresden und Umgebung`;
 
 export const metadata: Metadata = {

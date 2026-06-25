@@ -11,7 +11,7 @@ import { UEBER, STATS } from "@/lib/content";
 export const metadata = buildMetadata({
   title: "Über uns",
   description:
-    "HSF-Gebäudereinigung: Familienbetrieb in zweiter Generation, seit 1988 in Dresden. Feste Ansprechpartner, geregelte Vertretung, Qualitätskontrolle nach Checkliste.",
+    "HSF-Gebäudereinigung: Familienbetrieb in dritter Generation, seit 1988 in Dresden. Feste Ansprechpartner, geregelte Vertretung, Qualitätskontrolle nach Checkliste.",
   path: "/ueber-uns",
 });
 
@@ -117,17 +117,20 @@ export default function UeberUnsPage() {
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {UEBER.team.map((member) => (
-            <div key={member.rolle} className="border border-line bg-white">
+            <div key={member.name} className="border border-line bg-white">
               <div className="placeholder-stripe relative flex aspect-[4/5] items-end p-4">
                 <RegisterMarks color="border-blue" size="h-[16px] w-[16px]" />
                 <span className="relative font-mono text-[10px] uppercase tracking-[0.15em] text-grey-2">
-                  Echte Teamfotos nach Freigabe
+                  {member.group ? "Reinigungsteams" : "Foto nach Freigabe"}
                 </span>
               </div>
               <div className="border-t border-line p-5">
                 <h3 className="text-[16px] font-bold text-ink">
-                  {member.rolle}
+                  {member.name}
                 </h3>
+                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-blue">
+                  {member.rolle}
+                </p>
                 <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-grey">
                   {member.sub}
                 </p>

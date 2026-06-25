@@ -22,9 +22,9 @@ export default function ImpressumPage() {
 
         <div className="mt-7">
           <PlaceholderNote>
-            Hinweis: Dieses Impressum ist ein Gerüst. Alle mit [ … ergänzen ]
-            markierten Pflichtangaben vor dem Live-Gang einsetzen und juristisch
-            prüfen lassen.
+            Hinweis: Vor dem Live-Gang den Handelsregister-Eintrag (Amtsgericht
+            und HRB-Nummer) sowie die Anbieterangaben final juristisch prüfen
+            lassen.
           </PlaceholderNote>
         </div>
 
@@ -36,11 +36,18 @@ export default function ImpressumPage() {
             <p className="mt-3 text-[16px] leading-relaxed text-ink-2">
               {COMPANY.name}
               <br />
-              Inhaber: [ Vor- und Nachname ergänzen ]
-              <br />
               {CONTACT.street}
               <br />
               {CONTACT.city}
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-[20px] font-bold text-ink">
+              Vertreten durch
+            </h2>
+            <p className="mt-3 text-[16px] leading-relaxed text-ink-2">
+              Geschäftsführer: Jens Freudenberg, Max Freudenberg
             </p>
           </section>
 
@@ -49,9 +56,18 @@ export default function ImpressumPage() {
             <p className="mt-3 text-[16px] leading-relaxed text-ink-2">
               Telefon: {CONTACT.phone}
               <br />
-              Mobil: {CONTACT.mobile}
-              <br />
               E-Mail: {CONTACT.email}
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-[20px] font-bold text-ink">Registereintrag</h2>
+            <p className="mt-3 text-[16px] leading-relaxed text-ink-2">
+              Eintragung im Handelsregister
+              <br />
+              Registergericht: Amtsgericht Dresden
+              <br />
+              Registernummer: HRB 47451
             </p>
           </section>
 
@@ -62,7 +78,7 @@ export default function ImpressumPage() {
             <p className="mt-3 text-[16px] leading-relaxed text-ink-2">
               Umsatzsteuer-ID gemäß § 27 a Umsatzsteuergesetz:
               <br />
-              [ USt-IdNr. ergänzen, sofern vorhanden ]
+              DE460075738
             </p>
           </section>
 
@@ -73,7 +89,11 @@ export default function ImpressumPage() {
             <p className="mt-3 text-[16px] leading-relaxed text-ink-2">
               Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:
               <br />
-              [ Name und Anschrift ergänzen ]
+              Max Freudenberg
+              <br />
+              {CONTACT.street}
+              <br />
+              {CONTACT.city}
             </p>
           </section>
 

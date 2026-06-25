@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 // Domain für absolute URLs (OG, Canonical, Sitemap). Vor Live-Gang prüfen.
 export const SITE_URL = "https://www.hsf-gebaeudereinigung.de";
-export const SITE_NAME = "HSF-Gebäudereinigung";
+export const SITE_NAME = "HSF-Gebäudereinigung GmbH";
 
 // Generiertes Share-Vorschaubild (siehe app/opengraph-image.tsx).
 export const OG_IMAGE = {

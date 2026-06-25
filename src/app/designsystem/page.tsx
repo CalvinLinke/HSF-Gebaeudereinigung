@@ -212,7 +212,7 @@ export default function DesignsystemPage() {
             <p className="font-mono text-[13px] uppercase tracking-[0.15em] text-blue">
               Kicker-Label
             </p>
-            <p className="font-mono text-[15px] text-ink">0351 889 69 103</p>
+            <p className="font-mono text-[15px] text-ink">0157 3877 1323</p>
             <p className="font-mono text-[15px] uppercase tracking-[0.15em] text-ink">
               Seit 1988
             </p>

@@ -28,7 +28,7 @@ export function Footer() {
               <span className="text-[15px] font-bold">{COMPANY.name}</span>
             </div>
             <p className="mt-4 max-w-[34ch] text-[14px] leading-relaxed text-grey">
-              Familienbetrieb für Gebäudereinigung in Dresden. In zweiter
+              Familienbetrieb für Gebäudereinigung in Dresden. In dritter
               Generation, mit Leuten, die Ihr Objekt kennen.
             </p>
             <div className="mt-5">
@@ -86,14 +86,6 @@ export function Footer() {
                   className="transition-colors hover:text-white"
                 >
                   {CONTACT.phone}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={CONTACT.mobileHref}
-                  className="transition-colors hover:text-white"
-                >
-                  {CONTACT.mobile}
                 </a>
               </li>
               <li>

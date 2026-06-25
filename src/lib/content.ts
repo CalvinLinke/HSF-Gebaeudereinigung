@@ -9,22 +9,20 @@
  * STAMMDATEN / KONTAKT  (gegen Original prüfen, bevor live)
  * ------------------------------------------------------------------------- */
 export const COMPANY = {
-  name: "HSF-Gebäudereinigung",
+  name: "HSF-Gebäudereinigung GmbH",
   claim: "Gebäudereinigung · Dresden und Umgebung",
   foundedYear: 1988,
-  generation: "2. Generation",
+  generation: "3. Generation",
   customers: "1000+",
 } as const;
 
 export const CONTACT = {
-  phone: "0351 889 69 103",
-  phoneHref: "tel:+4935188969103",
-  mobile: "0177 411 35 30",
-  mobileHref: "tel:+491774113530",
-  email: "info@hsf-gebaeudereinigung.de",
-  emailHref: "mailto:info@hsf-gebaeudereinigung.de",
-  street: "Königsbrücker Landstraße 203",
-  city: "01108 Dresden",
+  phone: "0157 3877 1323",
+  phoneHref: "tel:+4915738771323",
+  email: "info@hsf-dresden.de",
+  emailHref: "mailto:info@hsf-dresden.de",
+  street: "Königsbrücker Landstraße 59",
+  city: "01109 Dresden",
   hours: "Mo–Fr 07:00–17:00 Uhr",
 } as const;
 
@@ -58,8 +56,8 @@ export const HERO = {
   // Richtung C
   headlineC: "Qualität, die man im ganzen Objekt sieht.",
   subline:
-    "Wir reinigen Büros, Praxen, Wohnanlagen und Gewerbeobjekte. Familienbetrieb in zweiter Generation, am Markt seit 1988. Jedes Objekt hat einen festen Ansprechpartner. Fällt jemand aus, springt die eingearbeitete Vertretung ein, meist ohne dass Sie es merken.",
-  trust: ["Seit 1988", "2. Generation", "Über 1000 betreute Kunden"],
+    "Wir reinigen Büros, Praxen, Wohnanlagen und Gewerbeobjekte. Familienbetrieb in dritter Generation, am Markt seit 1988. Jedes Objekt hat einen festen Ansprechpartner. Fällt jemand aus, springt die eingearbeitete Vertretung ein, meist ohne dass Sie es merken.",
+  trust: ["Seit 1988", "3. Generation", "Über 1000 betreute Kunden"],
 } as const;
 
 // Hero-Spec-Panel (Richtung A): "Was wir übernehmen"
@@ -265,7 +263,7 @@ export const USPS: Usp[] = [
  * ------------------------------------------------------------------------- */
 export const STATS: { value: string; label: string }[] = [
   { value: "1988", label: "Gegründet in Dresden" },
-  { value: "2.", label: "Generation im Familienbetrieb" },
+  { value: "3.", label: "Generation im Familienbetrieb" },
   { value: "1000+", label: "Betreute Kunden über die Jahre" },
   { value: "≤ 1 Tag", label: "Reaktion vor Ort in der Regel" },
 ];
@@ -326,19 +324,20 @@ export const FAQ: { q: string; a: string }[] = [
  * ------------------------------------------------------------------------- */
 export const UEBER = {
   kicker: "Über uns",
-  headline: "Seit 1988. In zweiter Generation. Aus Dresden.",
+  headline: "Seit 1988. In dritter Generation. Aus Dresden.",
   intro:
     "HSF ist kein anonymer Konzern. Wir sind ein Familienbetrieb, der seit über 35 Jahren Büros, Praxen und Objekte in Dresden reinigt. Mit denselben Leuten, die Ihr Objekt kennen, und mit dem Anspruch, den die erste Generation 1988 aufgestellt hat.",
   // kurzer Anriss für die Startseite
   anrissTitle: "Ein eingespieltes Team mit Geschichte",
   anriss1:
-    "1988 hat die erste Generation den Betrieb in Dresden gegründet. Heute führen wir ihn in zweiter Generation weiter, mit denselben Leuten in den Objekten und denselben Ansprüchen an die Arbeit. Viele unserer Kunden begleiten wir seit Jahren.",
+    "1988 hat die erste Generation den Betrieb in Dresden gegründet. Heute führen wir ihn in dritter Generation weiter, mit denselben Leuten in den Objekten und denselben Ansprüchen an die Arbeit. Viele unserer Kunden begleiten wir seit Jahren.",
   anriss2:
     "Das ist kein anonymer Konzern. Wenn Sie anrufen, ist am Telefon jemand, der Ihr Objekt kennt.",
   timeline: [
-    { jahr: "1988", text: "Die erste Generation gründet den Betrieb in Dresden. Von Anfang an mit festen Kunden in Büros und Wohnanlagen, nicht mit Aufträgen von der Stange." },
-    { jahr: "Über die Jahre", text: "Aus dem kleinen Stamm wird ein gewachsener Kundenkreis in Dresden und Umgebung. Praxen, Gewerbeobjekte und größere Büroflächen kommen dazu. Viele Kunden sind bis heute geblieben." },
-    { jahr: "Heute", text: "Die zweite Generation führt den Betrieb weiter. Mit erweitertem Fokus auf große Büroflächen, große Einrichtungen und die Bauendreinigung für Bauträger. Der Anspruch ist derselbe geblieben." },
+    { jahr: "1988", text: "Der Großvater gründet den Betrieb in Dresden. Von Anfang an mit festen Kunden in Büros und Wohnanlagen, nicht mit Aufträgen von der Stange." },
+    { jahr: "2003", text: "Die zweite Generation übernimmt und führt den Betrieb in Dresden weiter. Der Kundenkreis wächst, Praxen, Gewerbeobjekte und größere Büroflächen kommen dazu." },
+    { jahr: "2019", text: "Die dritte Generation steigt in den Betrieb ein und übernimmt nach und nach Verantwortung für Objekte und Kunden." },
+    { jahr: "2026", text: "Gründung der HSF-Gebäudereinigung GmbH. Die Kunden der bisherigen Einzelunternehmen werden in der GmbH zusammengeführt, mit erweitertem Fokus auf große Büroflächen, große Einrichtungen und die Bauendreinigung für Bauträger. Der Anspruch ist derselbe geblieben." },
   ],
   arbeitsweise: [
     { icon: "UserCheck", title: "Feste Ansprechpartner", text: "Jedes Objekt hat sein Team und seinen Ansprechpartner. Sie reden nicht jedes Mal mit jemand Neuem." },
@@ -348,11 +347,12 @@ export const UEBER = {
     { icon: "KeyRound", title: "Schlüssel & Zugang", text: "Schlüssel und Zutritt werden geregelt und protokolliert. Diskretion ist Teil der Arbeit, nicht die Ausnahme." },
     { icon: "PhoneCall", title: "Erreichbarkeit", text: "Sie erreichen einen Menschen, der Ihr Objekt kennt. Auch dann, wenn einmal etwas anders läuft als geplant." },
   ],
+  // name: einzelne Personen mit Foto; group: gemeinsame Karte ohne Einzelfoto
   team: [
-    { rolle: "Geschäftsführung", sub: "2. Generation" },
-    { rolle: "Objektleitung", sub: "Qualität & Kontrolle" },
-    { rolle: "Reinigungsteams", sub: "Geschultes Personal" },
-    { rolle: "Disposition", sub: "Planung & Vertretung" },
+    { name: "Jens Freudenberg", rolle: "Geschäftsführung", sub: "Familienbetrieb", group: false },
+    { name: "Max Freudenberg", rolle: "Geschäftsführung", sub: "3. Generation", group: false },
+    { name: "[ Name ergänzen ]", rolle: "Objektleitung", sub: "Qualität & Kontrolle", group: false },
+    { name: "Unsere Reinigungsteams", rolle: "Reinigungsteams", sub: "Geschultes Personal", group: true },
   ],
 };
 
@@ -383,15 +383,15 @@ export const KARRIERE = {
       mailtoSubject: "Bewerbung Reinigungskraft",
     },
     {
-      title: "Objektleiter / Vorarbeiter (m/w/d)",
-      tags: ["Dresden", "Vollzeit"],
-      text: "Für die Steuerung größerer Objekte. Sie planen Teams, halten die Qualität nach Checkliste und sind Ansprechpartner für den Kunden vor Ort.",
+      title: "Ausbildung Gebäudereiniger/in (m/w/d)",
+      tags: ["Dresden", "Ausbildung", "Start ab August"],
+      text: "Wir bilden aus. Bei uns lernen Sie das Handwerk von Grund auf, an echten Objekten und mit erfahrenen Kollegen an Ihrer Seite. Ein fester Ansprechpartner begleitet Sie durch die gesamte Ausbildung.",
       anforderungen: [
-        "Erfahrung in der Gebäudereinigung",
-        "Organisationstalent und Führung kleiner Teams",
-        "Führerschein Klasse B",
+        "Zuverlässigkeit und Lust, etwas zu lernen",
+        "Sorgfalt und ein Auge fürs Detail",
+        "Vorkenntnisse sind kein Muss, wir zeigen Ihnen alles",
       ],
-      mailtoSubject: "Bewerbung Objektleiter",
+      mailtoSubject: "Bewerbung Ausbildung Gebäudereiniger/in",
     },
   ],
   bewerbungTitle: "Ein Anruf reicht für den Anfang",
