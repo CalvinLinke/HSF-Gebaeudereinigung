@@ -23,7 +23,7 @@ export const CONTACT = {
   emailHref: "mailto:info@hsf-dresden.de",
   street: "Königsbrücker Landstraße 59",
   city: "01109 Dresden",
-  hours: "Mo–Fr 07:00–17:00 Uhr",
+  hours: "Mo–Fr 08:00–18:00 Uhr",
 } as const;
 
 /* ----------------------------------------------------------------------------

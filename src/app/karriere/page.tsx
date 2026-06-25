@@ -1,10 +1,11 @@
 import { buildMetadata } from "@/lib/site";
-import { Check, Phone, Mail, ArrowRight } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
 import { Icon } from "@/lib/icons";
+import { BewerbungFunnel } from "@/components/karriere/BewerbungFunnel";
 import { KARRIERE, CONTACT } from "@/lib/content";
 
 export const metadata = buildMetadata({
@@ -120,32 +121,8 @@ export default function KarrierePage() {
             </p>
           </div>
 
-          {/* Dunkle Kontaktkarte */}
-          <div className="bg-ink p-8 text-white md:p-9">
-            <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-grey">
-              Direkt melden
-            </p>
-            <div className="mt-5 space-y-4">
-              <a
-                href={CONTACT.phoneHref}
-                className="flex items-center gap-3.5 text-[16px] transition-colors hover:text-blue-tint"
-              >
-                <span className="grid h-10 w-10 place-items-center bg-white/10">
-                  <Phone className="h-5 w-5" />
-                </span>
-                {CONTACT.phone}
-              </a>
-              <a
-                href={CONTACT.emailHref}
-                className="flex items-center gap-3.5 break-all text-[16px] transition-colors hover:text-blue-tint"
-              >
-                <span className="grid h-10 w-10 shrink-0 place-items-center bg-white/10">
-                  <Mail className="h-5 w-5" />
-                </span>
-                {CONTACT.email}
-              </a>
-            </div>
-          </div>
+          {/* Mehrstufiger Bewerbungs-Funnel */}
+          <BewerbungFunnel />
         </div>
       </Section>
     </SiteShell>

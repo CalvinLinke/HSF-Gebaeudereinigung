@@ -1,11 +1,13 @@
+import { Phone } from "lucide-react";
 import { buildMetadata } from "@/lib/site";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
+import { Button } from "@/components/ui/Button";
 import { Accordion } from "@/components/leistungen/Accordion";
 import { KontaktCta } from "@/components/sections/KontaktCta";
-import { LEISTUNGEN, ABLAUF, FAQ } from "@/lib/content";
+import { LEISTUNGEN, ABLAUF, FAQ, CONTACT } from "@/lib/content";
 
 export const metadata = buildMetadata({
   title: "Leistungen",
@@ -63,6 +65,29 @@ export default function LeistungenPage() {
                 </p>
               </div>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* CTA nach dem Ablauf */}
+      <section className="border-b border-line bg-white">
+        <Container className="py-[56px] text-center md:py-[64px]">
+          <h2 className="mx-auto max-w-[26ch] text-[clamp(22px,2.8vw,30px)] font-extrabold leading-[1.1] tracking-[-0.02em] text-ink">
+            Klingt nach Ihrem Objekt? Lassen Sie uns starten.
+          </h2>
+          <p className="mx-auto mt-4 max-w-[52ch] text-[16px] leading-relaxed text-ink-2">
+            Schildern Sie uns Objekt, Fläche und Turnus. Sie bekommen ein
+            Angebot, Position für Position.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Button href="/kontakt">Angebot anfragen</Button>
+            <a
+              href={CONTACT.phoneHref}
+              className="inline-flex items-center gap-2 border border-line px-6 py-3.5 font-mono text-[13px] tracking-[0.05em] text-ink transition-colors hover:border-ink hover:bg-ink hover:text-white"
+            >
+              <Phone className="h-4 w-4" />
+              {CONTACT.phone}
+            </a>
           </div>
         </Container>
       </section>

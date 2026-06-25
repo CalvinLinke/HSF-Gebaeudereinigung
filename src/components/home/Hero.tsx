@@ -9,35 +9,12 @@ import {
   type CSSProperties,
 } from "react";
 import Link from "next/link";
-import { ChevronDown, ArrowRight, Moon, Sun } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import { KONTAKT, CONTACT } from "@/lib/content";
 
 // Layout-Effekt, der auf dem Server zu useEffect degradiert (kein SSR-Warning).
 const useIsoEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-// cubic-bezier(.5,.02,.35,1) als Easing-Funktion (Newton-Raphson).
-function makeBezier(p1x: number, p1y: number, p2x: number, p2y: number) {
-  const cx = 3 * p1x;
-  const bx = 3 * (p2x - p1x) - cx;
-  const ax = 1 - cx - bx;
-  const cy = 3 * p1y;
-  const by = 3 * (p2y - p1y) - cy;
-  const ay = 1 - cy - by;
-  const fx = (t: number) => ((ax * t + bx) * t + cx) * t;
-  const dfx = (t: number) => (3 * ax * t + 2 * bx) * t + cx;
-  const fy = (t: number) => ((ay * t + by) * t + cy) * t;
-  return (x: number) => {
-    let t = x;
-    for (let i = 0; i < 6; i++) {
-      const err = fx(t) - x;
-      const d = dfx(t);
-      if (Math.abs(err) < 1e-4 || d === 0) break;
-      t -= err / d;
-    }
-    return fy(Math.max(0, Math.min(1, t)));
-  };
-}
-const easeWipe = makeBezier(0.5, 0.02, 0.35, 1);
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 const easeInOutCubic = (t: number) =>
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -51,32 +28,19 @@ const TURNUS = ["Wöchentlich", "Täglich", "Einmalig"];
 const MARQUEE =
   "● PROFESSIONELL  ● FAIR KALKULIERT  ● REGIONAL VERWURZELT  ● ZUVERLÄSSIG  ● SCHNELLE ABWICKLUNG  ● EHRLICHE KOMMUNIKATION";
 
-// Weiche, organische Schmutzflecken (keine Streifen/Raster).
-const DIRT_SPOTS =
-  "radial-gradient(150px 110px at 16% 28%, rgba(120,110,95,.40), transparent 70%)," +
-  "radial-gradient(190px 150px at 60% 52%, rgba(92,86,74,.34), transparent 72%)," +
-  "radial-gradient(120px 95px at 82% 24%, rgba(132,120,100,.30), transparent 70%)," +
-  "radial-gradient(160px 130px at 38% 76%, rgba(104,97,84,.36), transparent 72%)," +
-  "radial-gradient(110px 90px at 90% 72%, rgba(116,105,90,.28), transparent 70%)," +
-  "radial-gradient(140px 110px at 28% 50%, rgba(98,92,80,.32), transparent 72%)," +
-  "radial-gradient(120px 100px at 70% 84%, rgba(110,100,86,.30), transparent 72%)";
-
 const FIELD_LABEL =
   "mb-1.5 block font-mono text-[11px] uppercase tracking-[1.5px] text-[#5A6373]";
 
 export function Hero() {
-  const [light, setLight] = useState(true);
   const [objektart, setObjektart] = useState(KONTAKT.objektarten[0]);
   const [flaeche, setFlaeche] = useState("");
   const [turnus, setTurnus] = useState(0);
 
-  const dirtRef = useRef<HTMLDivElement>(null);
-  const streakRef = useRef<HTMLDivElement>(null);
   const glossRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const counterRefs = useRef<Array<HTMLSpanElement | null>>([]);
 
-  const revealToken = useRef(0);
+  const glossToken = useRef(0);
   const countToken = useRef(0);
   const reduced = useRef(false);
 
@@ -84,15 +48,6 @@ export function Hero() {
     COUNTERS.forEach((c, i) => {
       const el = counterRefs.current[i];
       if (el) el.textContent = `${c.target}${c.suffix}`;
-    });
-  }, []);
-
-  // Kennzahlen leeren (geschütztes Leerzeichen hält die Höhe) und ein
-  // laufendes Count-up abbrechen — genutzt beim Start des Hell-Reveals.
-  const blankNumbers = useCallback(() => {
-    countToken.current++;
-    counterRefs.current.forEach((el) => {
-      if (el) el.textContent = " ";
     });
   }, []);
 
@@ -125,7 +80,7 @@ export function Hero() {
       const start = performance.now();
       g.style.opacity = "1";
       const frame = (now: number) => {
-        if (token !== revealToken.current) return;
+        if (token !== glossToken.current) return;
         const t = Math.min(1, (now - start) / dur);
         const e = easeInOutCubic(t);
         g.style.transform = `translateX(${-130 + e * 360}%) skewX(-18deg)`;
@@ -143,87 +98,26 @@ export function Hero() {
     }
   }, []);
 
-  const runReveal = useCallback(() => {
-    const token = ++revealToken.current;
-    const dirt = dirtRef.current;
-    const streak = streakRef.current;
-    if (reduced.current) {
-      if (dirt) dirt.style.opacity = "0";
-      setFinalNumbers();
-      return;
-    }
-    if (!dirt) return;
-    // Kennzahlen leeren; Count-up startet kurz vor Ende des Wischers
-    // (t >= 0.808, also ~0,7 s früher als das Wischer-Ende).
-    blankNumbers();
-    dirt.style.opacity = "1";
-    dirt.style.transform = "skewX(-11deg) translateX(-12%)";
-    if (streak) streak.style.opacity = "0.5";
-    let glossStarted = false;
-    let countStarted = false;
-    const delay = 400;
-    const dur = 4600;
-    const startAt = performance.now() + delay;
-    const frame = (now: number) => {
-      if (token !== revealToken.current) return;
-      if (now < startAt) {
-        requestAnimationFrame(frame);
-        return;
-      }
-      const t = Math.min(1, (now - startAt) / dur);
-      const e = easeWipe(t);
-      dirt.style.transform = `skewX(-11deg) translateX(${-12 + e * 162}%)`;
-      if (streak) streak.style.opacity = `${0.5 * (1 - t)}`;
-      if (!glossStarted && t >= 0.66) {
-        glossStarted = true;
-        runGloss(token);
-      }
-      if (!countStarted && t >= 0.808) {
-        countStarted = true;
-        runCountUp();
-      }
-      if (t < 1) requestAnimationFrame(frame);
-      else dirt.style.opacity = "0";
-    };
-    requestAnimationFrame(frame);
-  }, [blankNumbers, runCountUp, runGloss, setFinalNumbers]);
-
-  // Initialzustände + Load-Count-up (dunkel).
+  // Beim Laden: Kennzahlen hochzählen und einmal der dezente Karten-Glanz.
+  // Bei reduzierter Bewegung stehen die Zahlen sofort.
   useIsoEffect(() => {
     reduced.current =
       typeof window !== "undefined" &&
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (dirtRef.current) {
-      dirtRef.current.style.opacity = "0";
-      dirtRef.current.style.transform = "skewX(-11deg) translateX(150%)";
-    }
     if (glossRef.current) {
       glossRef.current.style.opacity = "0";
       glossRef.current.style.transform = "translateX(-130%) skewX(-18deg)";
     }
-    if (streakRef.current) streakRef.current.style.opacity = "0";
 
     if (reduced.current) {
       setFinalNumbers();
       return;
     }
-    // Im Hell-Default übernimmt der Reveal (Light-Effekt) das Count-up.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Umschalten dunkel <-> hell (Layout-Effekt: Dreck deckt vor dem ersten Paint).
-  useIsoEffect(() => {
-    if (light) {
-      // Hell ist Standard: der Reveal läuft auch beim Laden als Intro.
-      runReveal();
-    } else {
-      revealToken.current++;
-      if (dirtRef.current) dirtRef.current.style.opacity = "0";
-      setFinalNumbers(); // falls ein Reveal mittendrin abgebrochen wurde
-    }
-  }, [light, runReveal, setFinalNumbers]);
+    runCountUp();
+    runGloss(++glossToken.current);
+  }, [runCountUp, runGloss, setFinalNumbers]);
 
   function persistLead() {
     try {
@@ -237,17 +131,14 @@ export function Hero() {
   }
 
   const sectionStyle = {
-    background: light
-      ? "linear-gradient(180deg,#F5F8FD,#E3EDFB)"
-      : "#14181F",
+    background: "#14181F",
     borderBottom: "4px solid #1B4D8C",
-    transition: "background .5s ease",
-    "--hero-text": light ? "#14181F" : "#FFFFFF",
-    "--hero-sub": light ? "#3A424E" : "#AEB6C2",
-    "--hero-line": light ? "#CBD8EC" : "rgba(255,255,255,.14)",
-    "--hero-grid": light ? "rgba(27,77,140,.09)" : "rgba(127,168,221,.11)",
-    "--hero-spot": light ? "rgba(90,139,212,.45)" : "rgba(90,139,212,.30)",
-    "--hero-kicker": light ? "#1B4D8C" : "#7FA8DD",
+    "--hero-text": "#FFFFFF",
+    "--hero-sub": "#AEB6C2",
+    "--hero-line": "rgba(255,255,255,.14)",
+    "--hero-grid": "rgba(127,168,221,.11)",
+    "--hero-spot": "rgba(90,139,212,.30)",
+    "--hero-kicker": "#7FA8DD",
   } as unknown as CSSProperties;
 
   return (
@@ -352,7 +243,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Rechte Spalte: Lead-Funnel + Umschalter */}
+          {/* Rechte Spalte: Lead-Funnel */}
           <div className="flex flex-col gap-5">
             <div
               ref={cardRef}
@@ -471,87 +362,7 @@ export function Hero() {
                 />
               </div>
             </div>
-
-            {/* Dunkel/Hell-Umschalter */}
-            <div className="flex items-center justify-center gap-3">
-              <span
-                className="font-mono text-[11px] uppercase tracking-[1.5px]"
-                style={{ color: light ? "#8A929E" : "var(--hero-text)" }}
-              >
-                Dunkel
-              </span>
-              <button
-                type="button"
-                role="switch"
-                aria-checked={light}
-                aria-label="Zwischen dunklem und hellem Look umschalten"
-                onClick={() => setLight((v) => !v)}
-                className="relative h-[30px] w-[60px] transition-colors"
-                style={{ background: light ? "#1B4D8C" : "#3A424E" }}
-              >
-                <span
-                  className="absolute top-[3px] grid h-6 w-6 place-items-center bg-white transition-[left] duration-300"
-                  style={{ left: light ? "30px" : "3px" }}
-                >
-                  {light ? (
-                    <Sun className="h-3.5 w-3.5 text-[#1B4D8C]" />
-                  ) : (
-                    <Moon className="h-3.5 w-3.5 text-[#14181F]" />
-                  )}
-                </span>
-              </button>
-              <span
-                className="font-mono text-[11px] uppercase tracking-[1.5px]"
-                style={{ color: light ? "var(--hero-text)" : "#8A929E" }}
-              >
-                Hell
-              </span>
-            </div>
           </div>
-        </div>
-
-        {/* Dreck-Panel (Clean-Reveal) — liegt über dem Inhalt */}
-        <div
-          ref={dirtRef}
-          aria-hidden
-          className="hsf-dirt pointer-events-none absolute z-30"
-          style={{
-            top: "-14%",
-            left: 0,
-            width: "172%",
-            height: "128%",
-            backdropFilter: "blur(6px) saturate(.5) brightness(.95) contrast(.9)",
-            WebkitBackdropFilter:
-              "blur(6px) saturate(.5) brightness(.95) contrast(.9)",
-            willChange: "transform",
-          }}
-        >
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundColor: "rgba(60,56,50,.10)",
-              backgroundImage: DIRT_SPOTS,
-              filter: "blur(3px)",
-            }}
-          />
-          <div
-            ref={streakRef}
-            className="absolute inset-0"
-            style={{
-              mixBlendMode: "screen",
-              backgroundImage:
-                "linear-gradient(118deg, transparent 8%, rgba(255,255,255,.10) 26%, transparent 38%, rgba(255,255,255,.07) 54%, transparent 66%)",
-            }}
-          />
-          {/* Vorderkante = blauer Abzieher */}
-          <div
-            className="absolute left-0 top-0 h-full w-[70px]"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent, rgba(255,255,255,.9) 42%, #1B4D8C 60%, transparent)",
-              boxShadow: "0 0 26px rgba(27,77,140,.55)",
-            }}
-          />
         </div>
       </section>
 
