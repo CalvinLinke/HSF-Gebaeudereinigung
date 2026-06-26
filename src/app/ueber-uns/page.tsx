@@ -5,8 +5,9 @@ import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
 import { RegisterMarks } from "@/components/ui/RegisterMarks";
 import { KontaktCta } from "@/components/sections/KontaktCta";
+import { BadgeRow } from "@/components/ui/Badge";
 import { Icon } from "@/lib/icons";
-import { UEBER, STATS } from "@/lib/content";
+import { UEBER, STATS, CREDENTIALS } from "@/lib/content";
 
 export const metadata = buildMetadata({
   title: "Über uns",
@@ -31,6 +32,7 @@ export default function UeberUnsPage() {
             <p className="mt-5 max-w-[58ch] text-[17px] leading-relaxed text-ink-2">
               {UEBER.intro}
             </p>
+            <BadgeRow items={CREDENTIALS} className="mt-7" />
           </div>
 
           {/* Kennzahl-Panel */}

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { TrustBadge } from "@/components/ui/TrustBadge";
-import { COMPANY, CONTACT, LEISTUNGEN } from "@/lib/content";
+import { Badge } from "@/components/ui/Badge";
+import { COMPANY, CONTACT, LEISTUNGEN, CREDENTIALS } from "@/lib/content";
 
 const UNTERNEHMEN = [
   { label: "Über uns", href: "/ueber-uns" },
@@ -31,8 +32,15 @@ export function Footer() {
               Familienbetrieb für Gebäudereinigung in Dresden. In dritter
               Generation, mit Leuten, die Ihr Objekt kennen.
             </p>
-            <div className="mt-5">
+            <div className="mt-5 flex flex-wrap gap-2.5">
               <TrustBadge className="border-white/20 text-grey" />
+              {CREDENTIALS.map((c) => (
+                <Badge
+                  key={c.label}
+                  label={c.label}
+                  className="border-white/20 text-grey"
+                />
+              ))}
             </div>
           </div>
 

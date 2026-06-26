@@ -7,6 +7,7 @@ import { Kicker } from "@/components/ui/Kicker";
 import { DiagonalMark } from "@/components/ui/DiagonalMark";
 import { Hero } from "@/components/home/Hero";
 import { ServiceCard } from "@/components/home/ServiceCard";
+import { BadgeRow } from "@/components/ui/Badge";
 import { KontaktCta } from "@/components/sections/KontaktCta";
 import { Icon } from "@/lib/icons";
 import {
@@ -16,6 +17,7 @@ import {
   UEBER,
   COMPANY,
   CONTACT,
+  CREDENTIALS,
 } from "@/lib/content";
 import { buildMetadata, SITE_URL } from "@/lib/site";
 
@@ -66,6 +68,16 @@ export default function Startseite() {
 
       {/* 1 — Hero (Clean-Reveal, Dark/Light) */}
       <Hero />
+
+      {/* 1b — Qualifikations-Badges */}
+      <section className="border-b border-line bg-surface">
+        <Container className="flex flex-wrap items-center gap-x-4 gap-y-3 py-5">
+          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-grey">
+            Geprüfte Qualität
+          </span>
+          <BadgeRow items={CREDENTIALS} />
+        </Container>
+      </section>
 
       {/* 2 — Leistungen */}
       <Section>

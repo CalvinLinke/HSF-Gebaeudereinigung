@@ -57,8 +57,16 @@ export const HERO = {
   headlineC: "Qualität, die man im ganzen Objekt sieht.",
   subline:
     "Wir reinigen Büros, Praxen, Wohnanlagen und Gewerbeobjekte. Familienbetrieb in dritter Generation, am Markt seit 1988. Jedes Objekt hat einen festen Ansprechpartner. Fällt jemand aus, springt die eingearbeitete Vertretung ein, meist ohne dass Sie es merken.",
-  trust: ["Seit 1988", "3. Generation", "Über 1000 betreute Kunden"],
+  trust: ["Seit 1988", "3. Generation", "Meisterbetrieb", "Über 1000 betreute Kunden"],
 } as const;
+
+/* ----------------------------------------------------------------------------
+ * QUALIFIKATIONEN / GÜTESIGNALE (Badge-Reihe, mehrfach verwendet)
+ * ------------------------------------------------------------------------- */
+export const CREDENTIALS: { label: string; href?: string }[] = [
+  { label: "Meisterbetrieb" },
+  { label: "Ausbildungsbetrieb", href: "/karriere" },
+];
 
 // Hero-Spec-Panel (Richtung A): "Was wir übernehmen"
 export const OBJEKTTYPEN: { icon: string; label: string }[] = [
@@ -351,7 +359,7 @@ export const UEBER = {
   team: [
     { name: "Jens Freudenberg", rolle: "Geschäftsführung", sub: "Familienbetrieb", group: false },
     { name: "Max Freudenberg", rolle: "Geschäftsführung", sub: "3. Generation", group: false },
-    { name: "[ Name ergänzen ]", rolle: "Objektleitung", sub: "Qualität & Kontrolle", group: false },
+    { name: "Frau Sperling", rolle: "Objektleiterin · Meisterin", sub: "Gebäudereiniger-Meisterin", group: false },
     { name: "Unsere Reinigungsteams", rolle: "Reinigungsteams", sub: "Geschultes Personal", group: true },
   ],
 };
@@ -384,7 +392,7 @@ export const KARRIERE = {
     },
     {
       title: "Ausbildung Gebäudereiniger/in (m/w/d)",
-      tags: ["Dresden", "Ausbildung", "Start ab August"],
+      tags: ["Dresden", "Ausbildung", "Ausbildungsbetrieb", "Start ab August"],
       text: "Wir bilden aus. Bei uns lernen Sie das Handwerk von Grund auf, an echten Objekten und mit erfahrenen Kollegen an Ihrer Seite. Ein fester Ansprechpartner begleitet Sie durch die gesamte Ausbildung.",
       anforderungen: [
         "Zuverlässigkeit und Lust, etwas zu lernen",
