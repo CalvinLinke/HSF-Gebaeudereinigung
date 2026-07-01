@@ -2,7 +2,7 @@ import Link from "next/link";
 
 /**
  * Pill-Badge: kleines blaues Quadrat + Mono-Uppercase-Label, dünner Rand.
- * Mit `href` wird es zum verlinkten Badge (z. B. Ausbildungsbetrieb → /karriere),
+ * Mit `href` wird es zum verlinkten Badge (z. B. Label → Zielseite),
  * sonst statisches Label. Optik-Vorlage: TrustBadge.
  */
 const BASE =

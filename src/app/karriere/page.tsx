@@ -11,7 +11,7 @@ import { KARRIERE, CONTACT } from "@/lib/content";
 export const metadata = buildMetadata({
   title: "Karriere",
   description:
-    "Arbeiten bei HSF-Gebäudereinigung in Dresden: geregelte Zeiten, faire und pünktliche Bezahlung, eingespieltes Team. Offene Stellen für Reinigungskräfte und Ausbildungsplatz zum Gebäudereiniger.",
+    "Arbeiten bei HSF-Gebäudereinigung in Dresden: geregelte Zeiten, faire und pünktliche Bezahlung, eingespieltes Team. Offene Stellen für Reinigungskräfte, künftig auch Ausbildung zum Gebäudereiniger (voraussichtlich ab 2027).",
   path: "/karriere",
 });
 
