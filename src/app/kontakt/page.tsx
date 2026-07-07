@@ -2,6 +2,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Container } from "@/components/ui/Container";
 import { Kicker } from "@/components/ui/Kicker";
+import { PhotoBand } from "@/components/ui/PhotoBand";
 import { AnfrageForm } from "@/components/kontakt/AnfrageForm";
 import { MapEmbed } from "@/components/kontakt/MapEmbed";
 import { KONTAKT, CONTACT } from "@/lib/content";
@@ -40,6 +41,15 @@ export default function KontaktPage() {
           </p>
         </Container>
       </section>
+
+      {/* Marken-Band */}
+      <PhotoBand
+        src="/Fotos/marke-logo.jpg"
+        alt="HSF-Gebäudereinigung GmbH – Jens & Max Freudenberg, Dresden"
+        kicker="HSF-Gebäudereinigung GmbH"
+        title="Ein Ansprechpartner, der Ihr Objekt kennt"
+        position="object-[center_35%]"
+      />
 
       {/* Formular + Info */}
       <Container className="grid gap-10 py-[64px] md:py-[80px] lg:grid-cols-[1.3fr_.9fr]">

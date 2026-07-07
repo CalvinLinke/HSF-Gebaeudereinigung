@@ -4,6 +4,7 @@ import { SiteShell } from "@/components/layout/SiteShell";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
+import { PhotoBand } from "@/components/ui/PhotoBand";
 import { Icon } from "@/lib/icons";
 import { BewerbungFunnel } from "@/components/karriere/BewerbungFunnel";
 import { KARRIERE, CONTACT } from "@/lib/content";
@@ -30,6 +31,15 @@ export default function KarrierePage() {
           </p>
         </Container>
       </section>
+
+      {/* Team-Foto-Band */}
+      <PhotoBand
+        src="/Fotos/team-frauen-haende.jpg"
+        alt="Team der HSF-Gebäudereinigung feiert gemeinsam in Dresden"
+        kicker="Karriere bei HSF"
+        title="Werde Teil des Teams"
+        height="clamp(440px,62vw,820px)"
+      />
 
       {/* Vorteile */}
       <Section>

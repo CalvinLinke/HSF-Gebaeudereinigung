@@ -1,9 +1,11 @@
+import Image from "next/image";
 import { buildMetadata } from "@/lib/site";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
 import { RegisterMarks } from "@/components/ui/RegisterMarks";
+import { PhotoBand } from "@/components/ui/PhotoBand";
 import { KontaktCta } from "@/components/sections/KontaktCta";
 import { BadgeRow } from "@/components/ui/Badge";
 import { Icon } from "@/lib/icons";
@@ -82,6 +84,15 @@ export default function UeberUnsPage() {
         </div>
       </Section>
 
+      {/* Verlaufs-Band: gewachsen, zusammen */}
+      <PhotoBand
+        src="/Fotos/TeamFrauen.jpg"
+        alt="Team der HSF-Gebäudereinigung mit Blick auf die Dresdner Altstadt"
+        kicker="Seit 1988 in Dresden"
+        title="Gewachsen — und zusammengeblieben"
+        height="clamp(320px,46vw,600px)"
+      />
+
       {/* Wie wir arbeiten */}
       <section className="border-y border-line bg-surface">
         <Container className="py-[72px] md:py-[84px]">
@@ -117,28 +128,50 @@ export default function UeberUnsPage() {
             Die Menschen hinter den Objekten
           </h2>
         </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {UEBER.team.map((member) => (
-            <div key={member.name} className="border border-line bg-white">
-              <div className="placeholder-stripe relative flex aspect-[4/5] items-end p-4">
-                <RegisterMarks color="border-blue" size="h-[16px] w-[16px]" />
-                <span className="relative font-mono text-[10px] uppercase tracking-[0.15em] text-grey-2">
-                  {member.group ? "Reinigungsteams" : "Foto nach Freigabe"}
-                </span>
-              </div>
-              <div className="border-t border-line p-5">
-                <h3 className="text-[16px] font-bold text-ink">
-                  {member.name}
-                </h3>
-                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-blue">
-                  {member.rolle}
-                </p>
-                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-grey">
-                  {member.sub}
-                </p>
-              </div>
-            </div>
-          ))}
+        {/* Geschäftsführung & Leitung — gemeinsames Foto */}
+        <div className="mt-10 grid overflow-hidden border border-line bg-white lg:grid-cols-[1.25fr_.75fr]">
+          <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[360px]">
+            <Image
+              src="/Fotos/fuehrung.jpg"
+              alt="Geschäftsführung und Objektleitung der HSF-Gebäudereinigung: Frau Sperling, Max und Jens Freudenberg"
+              fill
+              sizes="(min-width:1024px) 55vw, 100vw"
+              className="object-cover object-top"
+            />
+          </div>
+          <div className="flex flex-col justify-center gap-5 p-7 md:p-9">
+            <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-blue">
+              Geschäftsführung &amp; Leitung
+            </p>
+            <ul className="divide-y divide-line">
+              {UEBER.team
+                .filter((member) => !member.group)
+                .map((member) => (
+                  <li key={member.name} className="py-3 first:pt-0 last:pb-0">
+                    <h3 className="text-[16px] font-bold text-ink">
+                      {member.name}
+                    </h3>
+                    <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.12em] text-grey">
+                      {member.rolle}
+                    </p>
+                  </li>
+                ))}
+            </ul>
+            <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-grey-2">
+              v. l. n. r. Frau Sperling · Max &amp; Jens Freudenberg
+            </p>
+          </div>
+        </div>
+
+        {/* Reinigungsteams */}
+        <div className="mt-6">
+          <PhotoBand
+            src="/Fotos/reinigungsteams.jpg"
+            alt="Reinigungsteams der HSF-Gebäudereinigung in Dresden"
+            kicker="Unsere Reinigungsteams"
+            title="Geschultes Personal, das Ihr Objekt kennt"
+            height="clamp(260px,34vw,440px)"
+          />
         </div>
       </Section>
 

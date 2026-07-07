@@ -3,6 +3,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { PhotoBand } from "@/components/ui/PhotoBand";
 import { Kicker } from "@/components/ui/Kicker";
 import { DiagonalMark } from "@/components/ui/DiagonalMark";
 import { Hero } from "@/components/home/Hero";
@@ -117,6 +118,15 @@ export default function Startseite() {
           </div>
         </Container>
       </section>
+
+      {/* 3b — Team-Foto (full-bleed) */}
+      <PhotoBand
+        src="/Fotos/Team.jpg"
+        alt="Das Team der HSF-Gebäudereinigung in Dresden"
+        kicker="Unser Team"
+        title="Das Team für die höchste Qualität"
+        height="clamp(400px,56vw,760px)"
+      />
 
       {/* 4 — Modul-Reihe */}
       <Section>
