@@ -98,7 +98,7 @@ export default function UeberUnsPage() {
         alt="Das Team der HSF-Gebäudereinigung in Dresden"
         kicker="Seit 1988 in Dresden"
         title="Gewachsen — und zusammengeblieben"
-        height="clamp(320px,46vw,600px)"
+        height="clamp(380px,54vw,700px)"
       />
 
       {/* Wie wir arbeiten */}
