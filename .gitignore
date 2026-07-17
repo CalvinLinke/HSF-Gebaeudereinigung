@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Video-Quelldateien (Master-Exporte); ausgeliefert werden die Web-Fassungen in public/video/
+*.mov
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

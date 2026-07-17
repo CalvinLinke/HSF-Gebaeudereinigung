@@ -7,6 +7,7 @@ import { Kicker } from "@/components/ui/Kicker";
 import { RegisterMarks } from "@/components/ui/RegisterMarks";
 import { PhotoBand } from "@/components/ui/PhotoBand";
 import { KontaktCta } from "@/components/sections/KontaktCta";
+import { HeroVideoBand } from "@/components/ueber/HeroVideoBand";
 import { BadgeRow } from "@/components/ui/Badge";
 import { Icon } from "@/lib/icons";
 import { UEBER, STATS, CREDENTIALS } from "@/lib/content";
@@ -23,6 +24,13 @@ const KENNZAHLEN = STATS.slice(0, 3);
 export default function UeberUnsPage() {
   return (
     <SiteShell active="ueber">
+      {/* Video-Banner: Sommerfest an der Elbe */}
+      <HeroVideoBand
+        kicker="Sommerfest an der Elbe"
+        title="So arbeiten wir zusammen"
+        subtitle="Einmal im Jahr feiert das ganze Team über der Elbe. Den Rest des Jahres steht dieselbe Mannschaft in Ihren Objekten."
+      />
+
       {/* Hero */}
       <section className="border-b border-line bg-surface">
         <Container className="grid items-center gap-12 py-[64px] md:py-[80px] lg:grid-cols-[1.1fr_.9fr]">
