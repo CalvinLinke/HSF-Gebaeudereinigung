@@ -94,8 +94,8 @@ export default function UeberUnsPage() {
 
       {/* Verlaufs-Band: gewachsen, zusammen */}
       <PhotoBand
-        src="/Fotos/TeamFrauen.jpg"
-        alt="Team der HSF-Gebäudereinigung mit Blick auf die Dresdner Altstadt"
+        src="/Fotos/Team.jpg"
+        alt="Das Team der HSF-Gebäudereinigung in Dresden"
         kicker="Seit 1988 in Dresden"
         title="Gewachsen — und zusammengeblieben"
         height="clamp(320px,46vw,600px)"
